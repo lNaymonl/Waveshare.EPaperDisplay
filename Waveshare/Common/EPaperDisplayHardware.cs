@@ -43,6 +43,14 @@ namespace Waveshare.Common
 
         //########################################################################################
 
+        // EPD_RST_PIN     = 17;
+        // EPD_DC_PIN      = 25;
+        // EPD_CS_PIN      = 8;
+        // EPD_PWR_PIN     = 18;
+        // EPD_BUSY_PIN    = 24;
+        // EPD_MOSI_PIN    = 10;
+        // EPD_SCLK_PIN    = 11;
+
         #region Constants
 
         /// <summary>
@@ -58,7 +66,7 @@ namespace Waveshare.Common
         /// <summary>
         /// GPIO SPI CS Pin Number
         /// </summary>
-        private const int GpioSpiCsPin = 24;
+        private const int GpioSpiCsPin = 8;
 
         /// <summary>
         /// GPIO Busy Pin Number
@@ -142,7 +150,8 @@ namespace Waveshare.Common
 
             GpioController?.OpenPin(GpioResetPin);
             GpioController?.OpenPin(GpioSpiDcPin);
-            GpioController?.OpenPin(GpioSpiCsPin);
+            Console.WriteLine("pinModeSupported: {0}, pinOpen: {1}", gpioController?.IsPinModeSupported(GpioSpiCsPin, PinMode.Output), GpioController?.IsPinOpen(GpioSpiCsPin));
+            // GpioController?.OpenPin(GpioSpiCsPin);
             GpioController?.OpenPin(GpioBusyPin);
 
             GpioController?.SetPinMode(GpioResetPin, PinMode.Output);
