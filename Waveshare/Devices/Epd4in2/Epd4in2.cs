@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Waveshare.Common;
 
@@ -96,40 +97,50 @@ namespace Waveshare.Devices.Epd4in2 {
         #region Protected Methods
         protected override void DeviceInitialize()
         {
+            Console.WriteLine("Before Reset");
             Reset();
 
+            Console.WriteLine("1 Block");
             SendCommand(Epd4in2Commands.BoosterSoftStart);
             SendData(0x17);
             SendData(0x17);
             SendData(0x17);
 
+            Console.WriteLine("2 Block");
             SendCommand(Epd4in2Commands.PowerSetting);
             SendData(0x03);
             SendData(0x00);
             SendData(0x2b);
             SendData(0x2b);
 
+            Console.WriteLine("3 Block");
             SendCommand(Epd4in2Commands.PowerOn);
             DeviceWaitUntilReady();
 
+            Console.WriteLine("4 Block");
             SendCommand(Epd4in2Commands.PanelSetting);
             SendData(0xbf);
 
+            Console.WriteLine("5 Block");
             SendCommand(Epd4in2Commands.PllControl);
             SendData(0x3c);
 
+            Console.WriteLine("6 Block");
             SendCommand(Epd4in2Commands.Resolution);
             SendData(0x01);
             SendData(0x90);
             SendData(0x01);
             SendData(0x2c);
 
+            Console.WriteLine("7 Block");
             SendCommand(Epd4in2Commands.VCM_DC);
             SendData(0x12);
 
+            Console.WriteLine("8 Block");
             SendCommand(Epd4in2Commands.VcomAndDataInterval);
             SendData(0x97);
 
+            Console.WriteLine("Before SetLut");
             SetLut();
         }
 
