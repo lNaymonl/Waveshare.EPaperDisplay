@@ -147,11 +147,14 @@ namespace Waveshare.Common
         internal EPaperDisplayHardware(SpiDevice spiDevice, GpioController gpioController)
         {
             GpioController = gpioController;
+            // GpioController?.NumberingScheme = PinNumberingScheme.Logical;
+
+            Console.WriteLine("Init GPIO");
 
             GpioController?.OpenPin(GpioResetPin);
             GpioController?.OpenPin(GpioSpiDcPin);
-            Console.WriteLine("pinModeSupported: {0}, pinOpen: {1}", gpioController?.IsPinModeSupported(GpioSpiCsPin, PinMode.Output), GpioController?.IsPinOpen(GpioSpiCsPin));
-            // GpioController?.OpenPin(GpioSpiCsPin);
+            // Console.WriteLine("pinModeSupported: {0}, pinOpen: {1}", gpioController?.IsPinModeSupported(GpioSpiCsPin, PinMode.Output), GpioController?.IsPinOpen(GpioSpiCsPin));
+            GpioController?.OpenPin(GpioSpiCsPin);
             GpioController?.OpenPin(GpioBusyPin);
 
             GpioController?.SetPinMode(GpioResetPin, PinMode.Output);
@@ -254,7 +257,7 @@ namespace Waveshare.Common
         /// <returns></returns>
         private static GpioController CreateGpioController()
         {
-            var gpioController = new GpioController();
+            var gpioController = new GpioController(PinNumberingScheme.Logical);
             return gpioController;
         }
 
@@ -264,7 +267,9 @@ namespace Waveshare.Common
         /// <returns></returns>
         private static SpiDevice CreateSpiDevice()
         {
-            var spiConnectionSettings = new SpiConnectionSettings(0, 0);
+            var spiConnectionSettings = new SpiConnectionSettings(0, 0) {
+                Mode = SpiMode.Mode0,
+            };
             return SpiDevice.Create(spiConnectionSettings);
         }
 
