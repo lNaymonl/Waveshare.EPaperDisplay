@@ -151,11 +151,17 @@ namespace Waveshare.Common
 
             Console.WriteLine("Init GPIO");
 
+            // DEV_GPIO_Mode(EPD_BUSY_PIN, 0);
+            // DEV_GPIO_Mode(EPD_RST_PIN, 1);
+            // DEV_GPIO_Mode(EPD_DC_PIN, 1);
+            // DEV_GPIO_Mode(EPD_CS_PIN, 1);
+            // DEV_GPIO_Mode(EPD_PWR_PIN, 1);
+
+            GpioController?.OpenPin(GpioBusyPin);
             GpioController?.OpenPin(GpioResetPin);
             GpioController?.OpenPin(GpioSpiDcPin);
-            // Console.WriteLine("pinModeSupported: {0}, pinOpen: {1}", gpioController?.IsPinModeSupported(GpioSpiCsPin, PinMode.Output), GpioController?.IsPinOpen(GpioSpiCsPin));
             GpioController?.OpenPin(GpioSpiCsPin);
-            GpioController?.OpenPin(GpioBusyPin);
+            // Console.WriteLine("pinModeSupported: {0}, pinOpen: {1}", gpioController?.IsPinModeSupported(GpioSpiCsPin, PinMode.Output), GpioController?.IsPinOpen(GpioSpiCsPin));
 
             GpioController?.SetPinMode(GpioResetPin, PinMode.Output);
             GpioController?.SetPinMode(GpioSpiDcPin, PinMode.Output);
