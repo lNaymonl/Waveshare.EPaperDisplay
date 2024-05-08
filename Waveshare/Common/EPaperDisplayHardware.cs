@@ -58,7 +58,7 @@ namespace Waveshare.Common
         /// <summary>
         /// GPIO SPI CS Pin Number
         /// </summary>
-        private const int GpioSpiCsPin = 8;
+        private const int GpioSpiCsPin = 24;
 
         /// <summary>
         /// GPIO Busy Pin Number
