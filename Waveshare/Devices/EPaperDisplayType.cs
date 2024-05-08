@@ -61,6 +61,12 @@ namespace Waveshare.Devices
         /// Display Resolution: 600*448 
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        WaveShare5In65f
+        WaveShare5In65f,
+        /// <summary>
+        /// Type: Waveshare 4.2inch e-Paper Module
+        /// Color: Black & White
+        /// Display Resolutio: 600*400
+        /// </summary>
+        Waveshare4In2
     }
 }

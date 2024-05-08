@@ -28,6 +28,7 @@
 using System;
 using Waveshare.Common;
 using Waveshare.Devices;
+using Waveshare.Devices.Epd4in2;
 using Waveshare.Devices.Epd5in65F;
 using Waveshare.Devices.Epd7in5_V2;
 using Waveshare.Devices.Epd7in5b_V2;
@@ -81,6 +82,9 @@ namespace Waveshare
                     break;
                 case EPaperDisplayType.WaveShare5In65f:
                     display = new Epd5in65f();
+                    break;
+                case EPaperDisplayType.Waveshare4In2:
+                    display = new Epd4in2();
                     break;
                 default:
                     display = null;
